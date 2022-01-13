@@ -24,10 +24,6 @@ RightSide:
 mov al,0Fh
 mov ah,0ch
 int 10h
-
-mov ah, 00h
-int 16h
-
 inc dx
 cmp dx, 199
 jne RightSide
