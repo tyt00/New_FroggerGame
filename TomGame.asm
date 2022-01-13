@@ -6,37 +6,51 @@ CODESEG
 proc sides
 mov cx, 4
 mov dx, 0
-LeftSide:
+LeftSideL:
 mov al,0Fh
 mov ah,0ch
 int 10h
 inc dx
-cmp dx, 199
-jne LeftSide
+cmp dx, 200
+jne LeftSideL
 mov dx, 0
-loop LeftSide
+loop LeftSideL
 
-mov cx, 4
-push cx
-mov dx, 0
 mov cx, 319
-RightSide:
+mov dx, 0
+RightSideL:
 mov al,0Fh
 mov ah,0ch
 int 10h
 inc dx
-cmp dx, 199
-jne RightSide
+cmp dx, 200
+jne RightSideL
 mov dx, 0
-pop cx
-push cx
-pop bx
-mov cx, 319
-sub cx, bx
-push bx
-loop RightSide
+cmp cx, 315
+jne loopRight
+mov cx, 1
+loopRight:
+loop RightSideL
 
+mov cx, 3
+mov dx, 0
+UpL:
+mov al,0Fh
+mov ah,0ch
+int 10h
+inc cx
+cmp cx, 315
+jne UpL
 
+mov cx, 3
+mov dx, 199
+DownL:
+mov al,0Fh
+mov ah,0ch
+int 10h
+inc cx
+cmp cx, 315
+jne DownL
 
 ret
 endp sides
