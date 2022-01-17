@@ -4,10 +4,12 @@ STACK 100h
 DATASEG
 count db 4
 count2 db 24
-count3 db 72
+count3 db 70
 count4 db 2
-count5 db 26
-count6 db 25
+count5 db 25
+count6 db 24
+count7 db 25
+
 xfrog dw 147
 yfrog dw 170
 
@@ -48,9 +50,8 @@ MoveFrog  	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 0
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
-			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
-			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
-		  	db '$'
+		  	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
+			db '$'
 
 CODESEG
 proc Sides
@@ -237,6 +238,7 @@ proc MoveFrogForward
 	Del_FrogF:
 		mov cx, [xfrog]
 		mov dx, [yfrog]
+		inc cx
 		mov bx, offset MoveFrog
 
 		Start_Create_MoveFrogF:
@@ -244,20 +246,20 @@ proc MoveFrogForward
 		cmp al, '$'
 		je Finish_Create_MoveFrogF
 
-		cmp al, 'n'
-		jne pass_nF
-		inc dx
-		mov cx, [xfrog]
-		inc bx
-		jmp Start_Create_MoveFrogF
-
-		pass_nF:
 		mov ah,0ch
 		int 10h
 
 		inc cx
 		inc bx
+		dec [count7]
+		cmp [count7],0
+		jne Start_Create_MoveFrogF
+		mov [count7],25
+		inc dx
+		mov cx, [xfrog]
+		inc bx
 		jmp Start_Create_MoveFrogF
+
 		Finish_Create_MoveFrogF:
 	Save_MoveFrogF:
 		mov cx, [xfrog]
@@ -274,11 +276,11 @@ proc MoveFrogForward
 		cmp [count5], 0
 		jne Save_MoveFrogF_Line
 
-		mov [count5],26
+		mov [count5],25
 		dec [count6]
 		cmp [count6], 0
 		je Save_MoveFrogF_Finish
-		add bx, 2
+		inc bx
 		jmp Save_MoveFrogF_Line
 
 		Save_MoveFrogF_Finish:
@@ -299,6 +301,7 @@ start:
     call Sides
 	call Backround
 	call Create_Frog
+	call MoveFrogForward
 	call MoveFrogForward
 	call MoveFrogForward
 	mov ah, 00h
