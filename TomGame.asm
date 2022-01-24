@@ -6,12 +6,11 @@ count db 4
 count2 db 24
 count3 db 70
 count4 db 2
-count5 db 25
-count6 db 24
-count7 db 25
+countFL1 db 23
+countFL2 db 23
 
 xfrog dw 147
-yfrog dw 170
+yfrog dw 171
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
@@ -52,6 +51,32 @@ MoveFrog  	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 0
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
 		  	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 'n'
 			db '$'
+
+MoveFroj	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+
 
 CODESEG
 proc Sides
@@ -142,7 +167,7 @@ proc Backround
 	jmp EndL
 	finishEndL:
 	
-	mov [count2], 24
+	mov [count2], 23
 	mov cx, 5
 	mov dx, 194
 	StartL:
@@ -234,62 +259,76 @@ proc Create_Frog
 	ret
 endp Create_Frog
 
-proc MoveFrogForward
-	Del_FrogF:
+proc MoveFrogLeft
+	mov [countFL1], 23
+	mov [countFL2], 23
+	Del_MoveFrogLeft:
 		mov cx, [xfrog]
 		mov dx, [yfrog]
 		inc cx
-		mov bx, offset MoveFrog
+		mov bx, offset MoveFroj
+		Start_MoveFrogLeft:
+			mov al,[bx]
+			cmp [countFL1], 0
+			je linedown_MoveFrogLeft
+			mov ah,0ch
+			int 10h
+			inc cx
+			inc bx
+			dec [countFL1]
+			jmp Start_MoveFrogLeft
 
-		Start_Create_MoveFrogF:
-		mov al, [bx]
-		cmp al, '$'
-		je Finish_Create_MoveFrogF
 
-		mov ah,0ch
-		int 10h
-
+		linedown_MoveFrogLeft:
+			mov ah,0ch
+			int 10h
+			cmp [countFL2], 0
+			je FinishDel_MoveFrogLeft
+			dec [countFL2]
+			mov [countFL1],23
+			inc bx
+			mov cx , [xfrog]
+			inc cx
+			inc dx
+			jmp Start_MoveFrogLeft
+		FinishDel_MoveFrogLeft: 
+	Save_MoveFrogLeft:
+		mov cx, [xfrog]
+		mov dx, [yfrog]
 		inc cx
-		inc bx
-		dec [count7]
-		cmp [count7],0
-		jne Start_Create_MoveFrogF
-		mov [count7],25
-		inc dx
-		mov cx, [xfrog]
-		inc bx
-		jmp Start_Create_MoveFrogF
-
-		Finish_Create_MoveFrogF:
-	Save_MoveFrogF:
-		mov cx, [xfrog]
-		mov dx , [yfrog]
-		sub dx, 24
-		mov bx, offset MoveFrog
-
-		Save_MoveFrogF_Line:
+		mov bx, offset MoveFroj
+		add cx, 24
+		mov [countFL1],23
+		mov [countFL2],23
+		Start_Save_MoveFrogLeft:
+		cmp [countFL1],0
+		je Savel_MoveFrogLeft
 		mov ah,0Dh
 		int 10h
 		mov [bx], al
+		inc cx
 		inc bx
-		dec [count5]
-		cmp [count5], 0
-		jne Save_MoveFrogF_Line
-
-		mov [count5],25
-		dec [count6]
-		cmp [count6], 0
-		je Save_MoveFrogF_Finish
+		dec [countFL1]
+		jmp Start_Save_MoveFrogLeft
+		Savel_MoveFrogLeft:
+		cmp [countFL2],0
+		je Finish_MoveFrogLeft
+		mov ah,0Dh
+		int 10h
+		mov [bx], al
+		inc dx 
 		inc bx
-		jmp Save_MoveFrogF_Line
-
-		Save_MoveFrogF_Finish:
-	
-	Draw_MoveFrogF:
-		sub [yfrog], 24
+		dec [countFL2]
+		mov [countFL1],23
+		mov cx,[xfrog]
+		inc cx
+		jmp Start_Save_MoveFrogLeft
+		Finish_MoveFrogLeft:
+	Create_MoveFrogLeft:
+		add [xfrog],24
 		call Create_Frog
 	ret
-endp MoveFrogForward
+endp MoveFrogLeft
 
 start:
 ; Graphic mode
@@ -301,9 +340,9 @@ start:
     call Sides
 	call Backround
 	call Create_Frog
-	call MoveFrogForward
-	call MoveFrogForward
-	call MoveFrogForward
+	call MoveFrogLeft
+	call MoveFrogLeft
+	call MoveFrogLeft
 	mov ah, 00h
     int 16h
     
