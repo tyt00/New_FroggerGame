@@ -527,11 +527,43 @@ start:
 	call Backround
 	call Create_Frog
 
+	jmp check_if_key_pressed
+    Wpressed:
+        call MoveFrogUp
+        jmp check_if_key_pressed
+    Dpressed:
+        call MoveFrogLeft
+        jmp check_if_key_pressed
+    Spressed:
+        call MoveFrogDown
+        jmp check_if_key_pressed
+    Apressed:
+        call MoveFrogRight
+        jmp check_if_key_pressed
+	check_if_key_pressed:
+		mov ah, 0bh
+        int 21h
+        cmp al, 0
+        jne  wait_for_key
+        jmp check_if_key_pressed
+	
+    wait_for_key:
+	mov ah, 00h
+    int 16h
+
+	cmp ah, 11h
+    je Wpressed
+    cmp ah, 20h
+    je Dpressed
+    cmp ah, 1Fh
+    je Spressed
+    cmp ah, 1Eh
+    je Apressed
+    jmp check_if_key_pressed
+
 	mov ah, 00h
     int 16h
     
-
-
 exit :
 mov ax, 4c00h
 int 21h
