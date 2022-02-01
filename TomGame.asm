@@ -4,7 +4,7 @@ STACK 100h
 DATASEG
 count db 4
 count2 db 24
-count3 db 70
+count3 db 71
 count4 db 2
 countFL1 db 23
 countFL2 db 23
@@ -159,8 +159,8 @@ proc Backround
 	jmp StartL
 	finishStartL:
 
-	mov cx, 5
-	mov dx, 30
+	mov cx, 3
+	mov dx, 27
 	River:
 	mov al,01h
 	mov ah,0ch
