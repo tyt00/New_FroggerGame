@@ -51,10 +51,11 @@ MoveFroj	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 
+car db 0Ch,
 
 CODESEG
 proc Sides
-	mov cx, 5
+	mov cx, 4
 	mov dx, 0
 	LeftSideL1:
 	dec cx
@@ -69,7 +70,7 @@ proc Sides
 	inc cx
 	loop LeftSideL1
 
-	mov cx, 319
+	mov cx, 318
 	mov dx, 0
 	RightSideL:
 	mov al,0Fh
@@ -79,7 +80,7 @@ proc Sides
 	cmp dx, 200
 	jne RightSideL
 	mov dx, 0
-	cmp cx, 315
+	cmp cx, 316
 	jne loopRight
 	mov cx, 1
 	loopRight:
@@ -92,7 +93,7 @@ proc Sides
 	mov ah,0ch
 	int 10h
 	inc cx
-	cmp cx, 315
+	cmp cx, 316
 	jne UpL
 	cmp [count], 0
 	je finishUpL
@@ -110,7 +111,7 @@ proc Sides
 	mov ah,0ch
 	int 10h
 	inc cx
-	cmp cx, 315
+	cmp cx, 316
 	jne DownL
 	cmp [count], 0
 	je finishDownL
@@ -124,55 +125,55 @@ proc Sides
 endp Sides
 
 proc Backround
-	mov cx, 5
-	mov dx, 5
+	mov cx, 4
+	mov dx, 3
 	EndL:
 	mov al,08h
 	mov ah,0ch
 	int 10h
 	inc cx
-	cmp cx, 315
+	cmp cx, 316
 	jne EndL
 	cmp [count2], 0
 	je finishEndL
 	dec [count2]
 	inc dx
-	mov cx,5
+	mov cx,4
 	jmp EndL
 	finishEndL:
 	
 	mov [count2], 23
-	mov cx, 5
+	mov cx, 4
 	mov dx, 194
 	StartL:
 	mov al,08h
 	mov ah,0ch
 	int 10h
 	inc cx
-	cmp cx, 315
+	cmp cx, 316
 	jne StartL
 	cmp [count2], 0
 	je finishStartL
 	dec [count2]
 	dec dx
-	mov cx, 5 
+	mov cx, 4
 	jmp StartL
 	finishStartL:
 
-	mov cx, 3
+	mov cx, 4
 	mov dx, 27
 	River:
 	mov al,01h
 	mov ah,0ch
 	int 10h
 	inc cx
-	cmp cx, 315
+	cmp cx, 316
 	jne River
 	cmp [count3], 0
 	je finishRiver
 	dec [count3]
 	inc dx
-	mov cx, 5 
+	mov cx, 4
 	jmp River
 	finishRiver:
 	ret
@@ -298,6 +299,10 @@ proc MoveFrogLeft
 		inc cx
 		jmp Start_Save_MoveFrogLeft
 		Finish_MoveFrogLeft:
+		inc cx
+		mov ah,0Dh
+		int 10h
+		mov [bx], al
 	Create_MoveFrogLeft:
 		add [xfrog],24
 		call Create_Frog
@@ -369,6 +374,10 @@ proc MoveFrogRight
 		inc cx
 		jmp Start_Save_MoveFrogRight
 		Finish_MoveFrogRight:
+		inc cx
+		mov ah,0Dh
+		int 10h
+		mov [bx], al
 	Create_MoveFrogRight:
 		sub [xfrog],24
 		call Create_Frog
@@ -440,6 +449,10 @@ proc MoveFrogUp
 		inc cx
 		jmp Start_Save_MoveFrogUp
 		Finish_MoveFrogUp:
+		inc cx
+		mov ah,0Dh
+		int 10h
+		mov [bx], al
 	Create_MoveFrogUp:
 		sub [yfrog],24
 		call Create_Frog
@@ -511,6 +524,10 @@ proc MoveFrogDown
 		inc cx
 		jmp Start_Save_MoveFrogDown
 		Finish_MoveFrogDown:
+		inc cx
+		mov ah,0Dh
+		int 10h
+		mov [bx], al
 	Create_MoveFrogDown:
 		add [yfrog],24
 		call Create_Frog
