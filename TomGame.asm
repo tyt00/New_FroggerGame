@@ -16,11 +16,27 @@ xcar1 dw 130
 ycar1 dw 130
 count1car1 db 39
 
-xcar2 dw 3
+xcar2 dw 60
 ycar2 dw 149
 count_car2_1 db 2
 count_car2_2 db 30
 count_car2_3 db 20
+count_car2_4 db 0
+
+xcar3 dw 150
+ycar3 dw 125
+count_car3_1 db 2
+count_car3_2 db 30
+count_car3_3 db 20
+count_car3_4 db 0
+
+xcar4 dw 3
+ycar4 dw 101
+count_car4_1 db 2
+count_car4_2 db 30
+count_car4_3 db 20
+count_car4_4 db 0
+
 
 xlog1 dw 3
 ylog1 dw 27
@@ -113,6 +129,28 @@ car2		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db '$'
 
+car3		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
+			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
+			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
+			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db '$'
+car4		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
+			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
+			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
+			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db '$'
 log1		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
@@ -730,6 +768,116 @@ proc Create_Car2
     ret
 endp Create_Car2
 
+proc Create_Car3
+    mov cx, [xcar3]
+    mov dx, [ycar3]
+    mov bx, offset car3
+
+    Start_Create_Car3:
+    mov al, [bx]
+    cmp al, '$'
+    je Finish_Create_Car3
+
+    cmp al, 't'
+    jne past_t_car3
+    add cx, 2
+    inc bx
+    jmp Start_Create_Car3
+
+    past_t_car3:
+    cmp al, 'n'
+    jne pass_n_car3
+    add dx, 2
+    mov cx, [xcar3]
+    inc bx
+    jmp Start_Create_Car3
+
+    pass_n_car3:
+
+    mov [count_car3_1], 2
+    xpixel_car3:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count_car3_1]
+    cmp [count_car3_1], 0
+    jne xpixel_car3
+
+    inc dx
+    mov [count_car3_1], 2
+    sub cx,2
+    ypixel_car3:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count_car3_1]
+    cmp [count_car3_1], 0
+    jne ypixel_car3
+    
+
+    inc bx
+    dec dx
+    jmp Start_Create_Car3
+
+    Finish_Create_Car3:
+    ret
+endp Create_Car3
+
+proc Create_Car4
+    mov cx, [xcar4]
+    mov dx, [ycar4]
+    mov bx, offset car4
+
+    Start_Create_Car4:
+    mov al, [bx]
+    cmp al, '$'
+    je Finish_Create_Car4
+
+    cmp al, 't'
+    jne past_t_car4
+    add cx, 2
+    inc bx
+    jmp Start_Create_Car4
+
+    past_t_car4:
+    cmp al, 'n'
+    jne pass_n_car4
+    add dx, 2
+    mov cx, [xcar4]
+    inc bx
+    jmp Start_Create_Car4
+
+    pass_n_car4:
+
+    mov [count_car4_1], 2
+    xpixel_car4:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count_car4_1]
+    cmp [count_car4_1], 0
+    jne xpixel_car4
+
+    inc dx
+    mov [count_car4_1], 2
+    sub cx,2
+    ypixel_car4:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count_car4_1]
+    cmp [count_car4_1], 0
+    jne ypixel_car4
+    
+
+    inc bx
+    dec dx
+    jmp Start_Create_Car4
+
+    Finish_Create_Car4:
+    ret
+endp Create_Car4
+
 proc Create_log1
 	mov cx, [xlog1]
 	mov dx, [ylog1]
@@ -901,10 +1049,90 @@ proc move_car2
 
 		end_del_car2:
 		draw_car2:
+			cmp [xcar2], 285
+			jne continue_move_car2
+			mov [xcar2], 3
+			jmp move_car2
+			continue_move_car2:
 			inc [xcar2]
 			call Create_Car2
 	ret
 endp move_car2
+
+proc move_car3
+    mov cx, [xcar3]
+    mov dx, [ycar3]
+    mov al, 00h
+    mov [count_car3_2], 30
+    mov [count_car3_3], 20
+    del_car3:
+        del_line_car3:
+        cmp [count_car3_2],0
+        je next_line_car3
+        inc cx
+        mov ah,0ch
+        int 10h
+        dec [count_car3_2]
+        jmp del_line_car3
+        
+        next_line_car3:
+        cmp [count_car3_3],0
+        je end_del_car3
+        mov cx, [xcar3]
+        inc dx
+        mov [count_car3_2],30
+        dec [count_car3_3]
+        jmp del_line_car3
+
+        end_del_car3:
+        draw_car3:
+            cmp [xcar3], 285
+            jne continue_move_car3
+            mov [xcar3], 3
+            jmp move_car3
+            continue_move_car3:
+            inc [xcar3]
+            call Create_Car3
+    ret
+endp move_car3
+
+proc move_car4
+    mov cx, [xcar4]
+    mov dx, [ycar4]
+    mov al, 00h
+    mov [count_car4_2], 30
+    mov [count_car4_3], 20
+    del_car4:
+        del_line_car4:
+        cmp [count_car4_2],0
+        je next_line_car4
+        inc cx
+        mov ah,0ch
+        int 10h
+        dec [count_car4_2]
+        jmp del_line_car4
+        
+        next_line_car4:
+        cmp [count_car4_3],0
+        je end_del_car4
+        mov cx, [xcar4]
+        inc dx
+        mov [count_car4_2],30
+        dec [count_car4_3]
+        jmp del_line_car4
+
+        end_del_car4:
+        draw_car4:
+            cmp [xcar4], 285
+            jne continue_move_car4
+            mov [xcar4], 3
+            jmp move_car4
+            continue_move_car4:
+            inc [xcar4]
+            call Create_Car4
+    ret
+endp move_car4
+
 start:
 ; Graphic mode
     mov ax, @data
@@ -927,22 +1155,65 @@ start:
 		je check_if_key_pressed
         call MoveFrogUp
         jmp check_if_key_pressed
+
     Dpressed:
 		cmp [xfrog],291
 		je check_if_key_pressed
         call MoveFrogLeft
         jmp check_if_key_pressed
+
     Spressed:
 		cmp [yfrog],171
 		je check_if_key_pressed
         call MoveFrogDown
         jmp check_if_key_pressed
+
     Apressed:
 		cmp [xfrog],3
 		je check_if_key_pressed
         call MoveFrogRight
         jmp check_if_key_pressed
+
+	Wpressed1:
+	jmp Wpressed
+
+	Dpressed1:
+	jmp Dpressed
+
+	Spressed1:
+	jmp Spressed
+
+	Apressed1:
+	jmp Apressed
+
+	Car2move:
+		call move_car2
+		mov [count_car2_4],0
+		jmp check_if_key_pressed
+
+	Car3move:
+		call move_car3
+		mov [count_car3_4],0
+		jmp check_if_key_pressed
+	
+	Car4move:
+		call move_car4
+		mov [count_car4_4],0
+		jmp check_if_key_pressed
+
 	check_if_key_pressed:
+		cmp [count_car2_4], 100
+		je Car2move
+		inc [count_car2_4]
+
+		cmp [count_car3_4], 100
+		je Car3move
+		inc [count_car3_4]
+
+		cmp [count_car4_4], 100
+		je Car4move
+		inc [count_car4_4]
+
 		mov ah, 0bh
         int 21h
         cmp al, 0
@@ -954,13 +1225,13 @@ start:
     int 16h
 
 	cmp ah, 11h
-    je Wpressed
+    je Wpressed1
     cmp ah, 20h
-    je Dpressed
+    je Dpressed1
     cmp ah, 1Fh
-    je Spressed
+    je Spressed1
     cmp ah, 1Eh
-    je Apressed
+    je Apressed1
     jmp check_if_key_pressed
 
 	mov ah, 00h
