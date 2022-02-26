@@ -1175,16 +1175,16 @@ start:
         jmp check_if_key_pressed
 
 	Wpressed1:
-	jmp Wpressed
+		jmp Wpressed
 
 	Dpressed1:
-	jmp Dpressed
+		jmp Dpressed
 
 	Spressed1:
-	jmp Spressed
+		jmp Spressed
 
 	Apressed1:
-	jmp Apressed
+		jmp Apressed
 
 	Car2move:
 		call move_car2
