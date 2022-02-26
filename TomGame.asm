@@ -12,6 +12,30 @@ countFL2 db 23
 xfrog dw 147
 yfrog dw 171
 
+xcar1 dw 130
+ycar1 dw 130
+count1car1 db 39
+
+xcar2 dw 3
+ycar2 dw 149
+count_car2_1 db 2
+count_car2_2 db 30
+count_car2_3 db 20
+
+xlog1 dw 3
+ylog1 dw 27
+count1log1 db 2
+
+xlog2 dw 99
+ylog2 dw 51
+count1log2 db 2
+
+xlog3 dw 195
+ylog3 dw 75
+count1log3 db 2
+
+
+
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
 		  	db 't', 0Ah, 't', 0Ah, 0Ah, 0Eh, 0Eh, 0Ah, 0Ah, 't', 0Ah, 't', 'n'
@@ -53,30 +77,83 @@ MoveFroj	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 
 car1		db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
 			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
-			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
+			db 't','t','t','t','t','t','t','t','t','t',07h,07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t',07h,07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t',07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t',07h,07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t',07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t',0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t',0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t'
 			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t','t','t','t','t'
 			db 0Eh,0Eh,0Eh,0Eh,0Eh,0Eh,0Eh,0Eh,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,07h,07h,07h,07h,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t'
 			db 0Eh,0Eh,0Eh,0Eh,0Eh,0Eh,0Eh,0Eh,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t','t','t','t'
 			db 0Eh,0Eh,0Eh,'t','t','t',0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,0Ch,'t','t','t','t','t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
-			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t',0Eh,0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t',0Eh,0Eh,'t','t','t','t','t','t','t','t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t',07h,07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t',07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t','t'
+			db 0Eh,0Eh,0Eh,'t','t','t','t','t','t','t',07h,07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t',07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t','t'
+			db 't','t','t','t','t','t','t','t','t','t',07h,07h,07h,07h,07h,'t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
 			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
 			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
-			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
+			db '$'
 
+car2		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
+			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
+			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
+			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
+			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db '$'
 
+log1		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db '$'
+
+log2		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db '$'
+
+log3		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db '$'
 CODESEG
 proc Sides
 	mov cx, 4
@@ -557,6 +634,277 @@ proc MoveFrogDown
 		call Create_Frog
 	ret
 endp MoveFrogDown
+
+proc Create_Car1
+	mov cx, [xcar1]
+	mov dx, [ycar1]
+	mov bx, offset car1
+
+	Start_Car1:
+		mov al, [bx]
+		cmp al, '$'
+		je Finish_Car1
+
+		cmp [count1car1], 0
+		je finish_line
+		
+		cmp al, 't'
+		jne past_t_car1
+		inc cx
+		inc bx
+		dec [count1car1]
+		jmp Start_Car1
+
+		past_t_car1:
+		mov ah,0ch
+		int 10h
+		inc cx
+		inc bx
+		dec [count1car1]
+		jmp Start_Car1
+
+		finish_line:
+			inc bx
+			mov cx, [xcar1]
+			inc dx
+			mov [count1car1], 39
+			jmp Start_Car1
+		
+
+	Finish_Car1:
+	ret
+endp Create_Car1
+
+proc Create_Car2
+    mov cx, [xcar2]
+    mov dx, [ycar2]
+    mov bx, offset car2
+
+    Start_Create_Car2:
+    mov al, [bx]
+    cmp al, '$'
+    je Finish_Create_Car2
+
+    cmp al, 't'
+    jne past_t_car2
+    add cx, 2
+    inc bx
+    jmp Start_Create_Car2
+
+    past_t_car2:
+    cmp al, 'n'
+    jne pass_n_car2
+    add dx, 2
+    mov cx, [xcar2]
+    inc bx
+    jmp Start_Create_Car2
+
+    pass_n_car2:
+
+    mov [count_car2_1], 2
+    xpixel_car2:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count_car2_1]
+    cmp [count_car2_1], 0
+    jne xpixel_car2
+
+    inc dx
+    mov [count_car2_1], 2
+    sub cx,2
+    ypixel_car2:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count_car2_1]
+    cmp [count_car2_1], 0
+    jne ypixel_car2
+    
+
+    inc bx
+    dec dx
+    jmp Start_Create_Car2
+
+    Finish_Create_Car2:
+    ret
+endp Create_Car2
+
+proc Create_log1
+	mov cx, [xlog1]
+	mov dx, [ylog1]
+	mov bx, offset log1
+
+	Start_log1:
+	mov al, [bx]
+	cmp al, '$'
+	je Finish_log1
+
+	cmp al, 'n'
+	jne pass_n_log1
+	add dx, 2
+	mov cx, [xlog1]
+	inc bx
+	jmp Start_log1
+
+	pass_n_log1:
+
+	mov [count1log1], 2
+	xpixel_log1:
+	inc cx
+	mov ah,0ch
+	int 10h
+	dec [count1log1]
+	cmp [count1log1], 0
+	jne xpixel_log1
+
+	inc dx
+	mov [count1log1], 2
+	sub cx,2
+	ypixel_log1:
+	inc cx
+	mov ah,0ch
+	int 10h
+	dec [count1log1]
+	cmp [count1log1], 0
+	jne ypixel_log1
+	
+
+	inc bx
+	dec dx
+	jmp Start_log1
+
+	Finish_log1:
+	ret
+endp Create_log1
+
+proc Create_log2
+    mov cx, [xlog2]
+    mov dx, [ylog2]
+    mov bx, offset log2
+
+    Start_log2:
+    mov al, [bx]
+    cmp al, '$'
+    je Finish_log2
+
+    cmp al, 'n'
+    jne pass_n_log2
+    add dx, 2
+    mov cx, [xlog2]
+    inc bx
+    jmp Start_log2
+
+    pass_n_log2:
+
+    mov [count1log2], 2
+    xpixel_log2:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log2]
+    cmp [count1log2], 0
+    jne xpixel_log2
+
+    inc dx
+    mov [count1log2], 2
+    sub cx,2
+    ypixel_log2:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log2]
+    cmp [count1log2], 0
+    jne ypixel_log2
+    
+
+    inc bx
+    dec dx
+    jmp Start_log2
+
+    Finish_log2:
+    ret
+endp Create_log2
+
+proc Create_log3
+    mov cx, [xlog3]
+    mov dx, [ylog3]
+    mov bx, offset log3
+
+    Start_log3:
+    mov al, [bx]
+    cmp al, '$'
+    je Finish_log3
+
+    cmp al, 'n'
+    jne pass_n_log3
+    add dx, 2
+    mov cx, [xlog3]
+    inc bx
+    jmp Start_log3
+
+    pass_n_log3:
+
+    mov [count1log3], 2
+    xpixel_log3:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log3]
+    cmp [count1log3], 0
+    jne xpixel_log3
+
+    inc dx
+    mov [count1log3], 2
+    sub cx,2
+    ypixel_log3:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log3]
+    cmp [count1log3], 0
+    jne ypixel_log3
+    
+
+    inc bx
+    dec dx
+    jmp Start_log3
+
+    Finish_log3:
+    ret
+endp Create_log3
+
+proc move_car2
+	mov cx, [xcar2]
+	mov dx, [ycar2]
+	mov al, 00h
+	mov [count_car2_2], 30
+	mov [count_car2_3], 20
+	del_car2:
+		del_line_car2:
+		cmp [count_car2_2],0
+		je next_line_car2
+		inc cx
+		mov ah,0ch
+    	int 10h
+		dec [count_car2_2]
+		jmp del_line_car2
+		
+		next_line_car2:
+		cmp [count_car2_3],0
+		je end_del_car2
+		mov cx, [xcar2]
+		inc dx
+		mov [count_car2_2],30
+		dec [count_car2_3]
+		jmp del_line_car2
+
+		end_del_car2:
+		draw_car2:
+			inc [xcar2]
+			call Create_Car2
+	ret
+endp move_car2
 start:
 ; Graphic mode
     mov ax, @data
@@ -567,6 +915,11 @@ start:
     call Sides
 	call Backround
 	call Create_Frog
+	call Create_Car2
+	call move_car2
+	call Create_log1
+	call Create_log2
+	call Create_log3
 
 	jmp check_if_key_pressed
     Wpressed:
