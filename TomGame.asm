@@ -17,21 +17,21 @@ ycar1 dw 130
 count1car1 db 39
 
 xcar2 dw 60
-ycar2 dw 149
+ycar2 dw 147
 count_car2_1 db 2
 count_car2_2 db 30
-count_car2_3 db 20
+count_car2_3 db 24
 count_car2_4 db 0
 
 xcar3 dw 150
-ycar3 dw 125
+ycar3 dw 123
 count_car3_1 db 2
 count_car3_2 db 30
 count_car3_3 db 20
 count_car3_4 db 0
 
 xcar4 dw 3
-ycar4 dw 101
+ycar4 dw 99
 count_car4_1 db 2
 count_car4_2 db 30
 count_car4_3 db 20
@@ -65,6 +65,7 @@ Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 't', 0Ah, 't', 't', 't', 't', 't', 't', 't', 't', 0Ah, 't', 'n'
 		  	db 't', 0Ah, 't', 't', 't', 't', 't', 't', 't', 't', 0Ah, 't', 'n'
 		  	db '$'
+;
 
 MoveFroj	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
@@ -90,6 +91,7 @@ MoveFroj	db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
 			db 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h, 08h
+;
 
 car1		db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
 			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
@@ -116,8 +118,10 @@ car1		db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
 			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
 			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t','t'
 			db '$'
+;
 
-car2		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+car2		db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','n'
+			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
 			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
 			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
@@ -127,9 +131,12 @@ car2		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
 			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
 			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','n'
 			db '$'
+;
 
-car3		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+car3		db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','n'
+			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
 			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
 			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
@@ -139,8 +146,12 @@ car3		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
 			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
 			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','n'
 			db '$'
-car4		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+;
+
+car4		db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','n'
+			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
 			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
 			db 't',0Ch,09h,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,09h,0Ch,0Ch,07h,09h,'n'
@@ -150,7 +161,10 @@ car4		db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
 			db 07h,0Ch,0Ch,0Ch,0Ch,0Ch,09h,0Ch,09h,09h,0Ch,0Ch,0Ch,0Ch,09h,'n'
 			db 't',0Ch,0Ch,0Ch,0Ch,0Ch,'t','t',0Ch,0Ch,0Ch,0Ch,0Ch,09h,'t','n'
 			db 't','t',07h,07h,07h,'t','t','t','t','t',07h,07h,'t','t','t','n'
+			db 't','t','t','t','t','t','t','t','t','t','t','t','t','t','t','n'
 			db '$'
+;
+
 log1		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
@@ -164,6 +178,7 @@ log1		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db '$'
+;
 
 log2		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
@@ -178,6 +193,7 @@ log2		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db '$'
+;
 
 log3		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
@@ -192,6 +208,10 @@ log3		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db '$'
+;
+
+
+
 CODESEG
 proc Sides
 	mov cx, 4
@@ -1027,7 +1047,7 @@ proc move_car2
 	mov dx, [ycar2]
 	mov al, 00h
 	mov [count_car2_2], 30
-	mov [count_car2_3], 20
+	mov [count_car2_3], 23
 	del_car2:
 		del_line_car2:
 		cmp [count_car2_2],0
@@ -1064,7 +1084,7 @@ proc move_car3
     mov dx, [ycar3]
     mov al, 00h
     mov [count_car3_2], 30
-    mov [count_car3_3], 20
+    mov [count_car3_3], 23
     del_car3:
         del_line_car3:
         cmp [count_car3_2],0
@@ -1101,7 +1121,7 @@ proc move_car4
     mov dx, [ycar4]
     mov al, 00h
     mov [count_car4_2], 30
-    mov [count_car4_3], 20
+    mov [count_car4_3], 23
     del_car4:
         del_line_car4:
         cmp [count_car4_2],0
@@ -1143,9 +1163,9 @@ proc hit
 	
 	mov ax, [yfrog]
 	sub ax, [ycar2]
-	cmp ax, 14
+	cmp ax, 13
 	jl end_hit
-	cmp ax, -14
+	cmp ax, -13
 	jg end_hit
 
 	mov [xfrog], 147
