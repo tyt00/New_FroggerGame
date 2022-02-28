@@ -1133,6 +1133,27 @@ proc move_car4
     ret
 endp move_car4
 
+proc hit
+	mov ax, [xfrog]
+	sub ax, [xcar2]
+	cmp ax, 11
+	jl end_hit
+	cmp ax, -11
+	jg end_hit
+	
+	mov ax, [yfrog]
+	sub ax, [ycar2]
+	cmp ax, 14
+	jl end_hit
+	cmp ax, -14
+	jg end_hit
+
+	mov [xfrog], 147
+	mov [yfrog], 171
+	call Create_Frog
+	end_hit:
+	ret
+endp hit
 start:
 ; Graphic mode
     mov ax, @data
@@ -1145,9 +1166,7 @@ start:
 	call Create_Frog
 	call Create_Car2
 	call move_car2
-	call Create_log1
-	call Create_log2
-	call Create_log3
+
 
 	jmp check_if_key_pressed
     Wpressed:
@@ -1200,7 +1219,8 @@ start:
 		call move_car4
 		mov [count_car4_4],0
 		jmp check_if_key_pressed
-
+	check_hit:
+		call hit
 	check_if_key_pressed:
 		cmp [count_car2_4], 100
 		je Car2move
