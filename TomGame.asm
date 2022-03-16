@@ -50,7 +50,11 @@ xlog3 dw 195
 ylog3 dw 75
 count1log3 db 2
 
+count_hit1 dw 23
+count_hit2 dw 25
+count_ret_array dw 576
 
+lose db 0
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
@@ -1153,27 +1157,119 @@ proc move_car4
     ret
 endp move_car4
 
-proc hit
-	mov ax, [xfrog]
-	sub ax, [xcar2]
-	cmp ax, 11
-	jl end_hit
-	cmp ax, -11
-	jg end_hit
-	
-	mov ax, [yfrog]
-	sub ax, [ycar2]
-	cmp ax, 13
-	jl end_hit
-	cmp ax, -13
-	jg end_hit
+proc hit_frog_array
+	mov cx, [xfrog]
+    mov dx, [yfrog]
+    add [count_hit2], cx
+    hit_frog_1:
+    mov al,00h
+    mov ah,0ch
+    int 10h
+    inc cx
+    cmp cx, [count_hit2]
+    jne hit_frog_1
+    cmp [count_hit1], 0
+    je finish_hit_frog_1
+    dec [count_hit1]
+    inc dx
+    mov cx, [xfrog]
+    jmp hit_frog_1
+    finish_hit_frog_1:
+	mov [count_hit1], 23
+    mov [count_hit2], 25
 
+	mov bx, offset MoveFroj
+	return_array:
+		mov al, 08h
+		mov [bx], al
+		inc bx
+		dec [count_ret_array]
+		cmp [count_ret_array],0
+		jne return_array
+	mov [count_ret_array],576
+
+	inc [lose]
+	ret
+endp hit_frog_array
+
+proc hit_car2
+	mov ax, [xcar2]
+	sub ax, 24
+	mov bx, [xcar2]
+	add bx, 29
+	cmp ax, [xfrog]
+	jge end_hit_car2
+	cmp bx, [xfrog]
+	jle end_hit_car2
+	mov ax, [ycar2]
+	sub ax, 23
+	mov bx, [ycar2]
+	add bx, 23
+	cmp ax, [yfrog]
+	jge end_hit_car2
+	cmp bx, [yfrog]
+	jle end_hit_car2
+
+	call hit_frog_array
 	mov [xfrog], 147
 	mov [yfrog], 171
 	call Create_Frog
-	end_hit:
+	end_hit_car2:
 	ret
-endp hit
+endp hit_car2
+
+proc hit_car3
+    mov ax, [xcar3]
+    sub ax, 24
+    mov bx, [xcar3]
+    add bx, 29
+    cmp ax, [xfrog]
+    jge end_hit_car3
+    cmp bx, [xfrog]
+    jle end_hit_car3
+    mov ax, [ycar3]
+    sub ax, 23
+    mov bx, [ycar3]
+    add bx, 23
+    cmp ax, [yfrog]
+    jge end_hit_car3
+    cmp bx, [yfrog]
+    jle end_hit_car3
+
+	call hit_frog_array
+    mov [xfrog], 147
+    mov [yfrog], 171
+    call Create_Frog
+    end_hit_car3:
+    ret
+endp hit_car3
+
+proc hit_car4
+    mov ax, [xcar4]
+    sub ax, 24
+    mov bx, [xcar4]
+    add bx, 29
+    cmp ax, [xfrog]
+    jge end_hit_car4
+    cmp bx, [xfrog]
+    jle end_hit_car4
+    mov ax, [ycar4]
+    sub ax, 23
+    mov bx, [ycar4]
+    add bx, 23
+    cmp ax, [yfrog]
+    jge end_hit_car4
+    cmp bx, [yfrog]
+    jle end_hit_car4
+
+	call hit_frog_array
+    mov [xfrog], 147
+    mov [yfrog], 171
+    call Create_Frog
+    end_hit_car4:
+    ret
+endp hit_car4
+
 start:
 ; Graphic mode
     mov ax, @data
@@ -1194,53 +1290,55 @@ start:
 		je check_if_key_pressed
         call MoveFrogUp
         jmp check_if_key_pressed
-
+	;
     Dpressed:
 		cmp [xfrog],291
 		je check_if_key_pressed
         call MoveFrogLeft
         jmp check_if_key_pressed
-
+	;
     Spressed:
 		cmp [yfrog],171
 		je check_if_key_pressed
         call MoveFrogDown
         jmp check_if_key_pressed
-
+	;
     Apressed:
 		cmp [xfrog],3
 		je check_if_key_pressed
         call MoveFrogRight
         jmp check_if_key_pressed
-
+	;
 	Wpressed1:
 		jmp Wpressed
-
+	;
 	Dpressed1:
 		jmp Dpressed
-
+	;
 	Spressed1:
 		jmp Spressed
-
+	;
 	Apressed1:
 		jmp Apressed
-
+	;
 	Car2move:
 		call move_car2
 		mov [count_car2_4],0
+		call hit_car2
 		jmp check_if_key_pressed
-
+	;
 	Car3move:
 		call move_car3
 		mov [count_car3_4],0
+		call hit_car3
 		jmp check_if_key_pressed
-	
+	;
 	Car4move:
 		call move_car4
 		mov [count_car4_4],0
+		call hit_car4
 		jmp check_if_key_pressed
-	check_hit:
-		call hit
+	;
 	check_if_key_pressed:
 		cmp [count_car2_4], 100
 		je Car2move
