@@ -56,6 +56,8 @@ count_ret_array dw 576
 
 lose db 0
 
+count1_log1 db 23
+
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
 		  	db 't', 0Ah, 't', 0Ah, 0Ah, 0Eh, 0Eh, 0Ah, 0Ah, 't', 0Ah, 't', 'n'
@@ -435,7 +437,7 @@ proc MoveFrogLeft
 		mov dx, [yfrog]
 		inc cx
 		mov bx, offset MoveFroj
-		add cx, 24
+		sub cx, 24
 		mov [countFL1],23
 		mov [countFL2],23
 		Start_Save_MoveFrogLeft:
@@ -467,7 +469,7 @@ proc MoveFrogLeft
 		int 10h
 		mov [bx], al
 	Create_MoveFrogLeft:
-		add [xfrog],24
+		sub [xfrog],24
 		call Create_Frog
 	ret
 endp MoveFrogLeft
@@ -510,7 +512,7 @@ proc MoveFrogRight
 		mov dx, [yfrog]
 		inc cx
 		mov bx, offset MoveFroj
-		sub cx, 24
+		add cx, 24
 		mov [countFL1],23
 		mov [countFL2],23
 		Start_Save_MoveFrogRight:
@@ -542,7 +544,7 @@ proc MoveFrogRight
 		int 10h
 		mov [bx], al
 	Create_MoveFrogRight:
-		sub [xfrog],24
+		add [xfrog],24
 		call Create_Frog
 	ret
 endp MoveFrogRight
@@ -1270,6 +1272,40 @@ proc hit_car4
     ret
 endp hit_car4
 
+proc move_log1
+	mov cx, [xlog1]
+	inc cx
+	mov dx, [ylog1]
+	mov al, 01h
+	mov [count1_log1], 24
+
+	del_line_log1:
+		cmp [count1_log1], 0
+		je draw_line1_log1
+		mov ah,0ch
+		int 10h
+		inc dx
+		dec [count1_log1]
+		jmp del_line_log1
+	
+	draw_line1_log1:
+	mov dx, [ylog1]
+	add cx, 72
+	mov al, 06h
+	mov [count1_log1], 24
+	draw_line2_log1:
+		cmp [count1_log1], 0
+		je finish_move_log1
+		mov ah,0ch
+		int 10h
+		inc dx
+		dec [count1_log1]
+		jmp draw_line2_log1
+
+	finish_move_log1:
+	inc [xlog1]
+	ret
+endp move_log1
 start:
 ; Graphic mode
     mov ax, @data
@@ -1280,9 +1316,8 @@ start:
     call Sides
 	call Backround
 	call Create_Frog
-	call Create_Car2
-	call move_car2
 
+	call Create_log1
 
 	jmp check_if_key_pressed
     Wpressed:
@@ -1294,7 +1329,7 @@ start:
     Dpressed:
 		cmp [xfrog],291
 		je check_if_key_pressed
-        call MoveFrogLeft
+        call MoveFrogRight
         jmp check_if_key_pressed
 	;
     Spressed:
@@ -1306,7 +1341,7 @@ start:
     Apressed:
 		cmp [xfrog],3
 		je check_if_key_pressed
-        call MoveFrogRight
+        call MoveFrogLeft
         jmp check_if_key_pressed
 	;
 	Wpressed1:
