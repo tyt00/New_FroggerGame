@@ -1769,7 +1769,7 @@ start:
 		je Car4move
 		inc [count_car4_4]
 
-		cmp [count2_log1], 100
+		cmp [count2_log1], 75
 		je log1move
 		inc [count2_log1]
 
@@ -1777,7 +1777,7 @@ start:
 		je log2move
 		inc [count2_log2]
 
-		cmp [count2_log3], 90
+		cmp [count2_log3], 85
 		je log3move
 		inc [count2_log3]
 
