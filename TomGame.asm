@@ -78,6 +78,9 @@ count2_log3 db 0
 
 color_hit db 0
 
+NextRandom dw 0
+random_num dw 0
+
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
 		  	db 't', 0Ah, 't', 0Ah, 0Ah, 0Eh, 0Eh, 0Ah, 0Ah, 't', 0Ah, 't', 'n'
@@ -1665,8 +1668,33 @@ proc hit_log3
     ret
 endp hit_log3
 
+proc prg
+    push dx
+    xor dx, dx
 
+    mov ax, [NextRandom]
+    mov dx, 25173
+    imul dx
 
+    add  ax, 13849
+    xor  ax, 62832
+    mov  [NextRandom], ax
+
+    pop dx
+    ret
+endp prg
+
+proc car_x
+	mov ax, @data
+    mov ds, ax
+    mov ah, 2Ch 
+    int 21h
+	mov [NextRandom], dx
+	call prg
+	mov ax,[random_num]
+	mov [xcar1],ax
+	ret
+endp car_x
 start:
 ; Graphic mode
     mov ax, @data
