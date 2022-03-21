@@ -16,21 +16,21 @@ xcar1 dw 130
 ycar1 dw 130
 count1car1 db 39
 
-xcar2 dw 60
+xcar2 dw 5 ;60
 ycar2 dw 147
 count_car2_1 db 2
 count_car2_2 db 30
 count_car2_3 db 24
 count_car2_4 db 0
 
-xcar3 dw 150
+xcar3 dw 5 ;150
 ycar3 dw 123
 count_car3_1 db 2
 count_car3_2 db 30
 count_car3_3 db 20
 count_car3_4 db 0
 
-xcar4 dw 3
+xcar4 dw 5 ;3
 ycar4 dw 99
 count_car4_1 db 2
 count_car4_2 db 30
@@ -58,7 +58,9 @@ count_hit1_log dw 23
 count_hit2_log  dw 25
 count_ret_array_log  dw 576
 
-lose db 0
+lose dw 0
+lose_str dw '3', '$'
+lose2 dw 0
 
 count1_log1 db 23
 countb_log1 db 0
@@ -78,8 +80,7 @@ count2_log3 db 0
 
 color_hit db 0
 
-NextRandom dw 0
-random_num dw 0
+NextRandom dw 10000
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
@@ -1685,22 +1686,50 @@ proc prg
 endp prg
 
 proc car_x
-	mov ax, @data
-    mov ds, ax
-    mov ah, 2Ch 
-    int 21h
-	mov [NextRandom], dx
 	call prg
-	mov ax,[random_num]
-	mov [xcar1],ax
+	mov ax, [NextRandom]
+	mov ah, 0
+	add [xcar1], ax
 	ret
 endp car_x
+
+proc check_lose
+	mov ah, 02h ; cursor position
+	mov bh, 00h ; page number
+	mov dh, 01h ; row
+	mov dl, 01h ; columns
+	int 10h
+
+	mov ax, 3
+	sub ax, [lose]
+	cmp ax, 0
+	jne continue_game
+	call end_game
+	continue_game:
+	mov [lose_str], ax
+	add [lose_str], 30h
+
+	mov ah, 09h ; write string to standart output
+	lea dx, [lose_str]
+	int 21h
+	ret
+endp check_lose
+
+proc end_game
+	ret
+endp end_game
+
 start:
 ; Graphic mode
     mov ax, @data
     mov ds, ax
     mov ax, 13h
     int 10h
+
+	mov ah, 2Ch
+	int 21h
+	mov [NextRandom],dx
+	call car_x
 
     call Sides
 	call Backround
@@ -1709,6 +1738,9 @@ start:
 	call Create_log1
 	call Create_log2
 	call Create_log3
+
+	call check_lose
+
 
 	jmp check_if_key_pressed
     Wpressed:
@@ -1783,6 +1815,11 @@ start:
 	;
 	Apressed1:
 		jmp Apressed
+	;
+		p_lose:
+		mov ax, [lose]
+		mov [lose2], ax
+		call check_lose
 
 	check_if_key_pressed:
 		cmp [count_car2_4], 100
@@ -1808,6 +1845,10 @@ start:
 		cmp [count2_log3], 85
 		je log3move
 		inc [count2_log3]
+		
+		mov ax, [lose]
+		cmp ax, [lose2]
+		jne p_lose
 
 		mov ah, 0bh
         int 21h
