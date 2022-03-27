@@ -16,21 +16,21 @@ xcar1 dw 130
 ycar1 dw 130
 count1car1 db 39
 
-xcar2 dw 5 ;60
+xcar2 dw 60
 ycar2 dw 147
 count_car2_1 db 2
 count_car2_2 db 30
 count_car2_3 db 24
 count_car2_4 db 0
 
-xcar3 dw 5 ;150
+xcar3 dw 150
 ycar3 dw 123
 count_car3_1 db 2
 count_car3_2 db 30
 count_car3_3 db 20
 count_car3_4 db 0
 
-xcar4 dw 5 ;3
+xcar4 dw 3
 ycar4 dw 99
 count_car4_1 db 2
 count_car4_2 db 30
@@ -81,6 +81,9 @@ count2_log3 db 0
 color_hit db 0
 
 NextRandom dw 10000
+
+count_start dw 0ffffh
+count_start2 dw 0ffffh
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
@@ -1687,9 +1690,7 @@ endp prg
 
 proc car_x
 	call prg
-	mov ax, [NextRandom]
-	mov ah, 0
-	add [xcar1], ax
+	add [xcar2], ax
 	ret
 endp car_x
 
@@ -1729,6 +1730,14 @@ start:
 	mov ah, 2Ch
 	int 21h
 	mov [NextRandom],dx
+
+	oren_the_KING:
+	call prg
+	mov ah, 1h
+	Int 16h
+	cmp al,00h
+	je oren_the_KING
+
 	call car_x
 
     call Sides
