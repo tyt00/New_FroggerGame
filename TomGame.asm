@@ -42,13 +42,21 @@ xlog1 dw 3
 ylog1 dw 27
 count1log1 db 2
 
-xlog2 dw 99
+xlog2 dw 50
 ylog2 dw 51
 count1log2 db 2
+
+xlog4 dw 190
+ylog4 dw 51
+count1log4 db 2
 
 xlog3 dw 195
 ylog3 dw 75
 count1log3 db 2
+
+xlog5 dw 95
+ylog5 dw 75
+count1log5 db 2
 
 count_hit1 dw 23
 count_hit2 dw 25
@@ -68,8 +76,14 @@ countb_log1 db 0
 count1_log2 db 23
 countb_log2 db 0
 
+count1_log4 db 23
+countb_log4 db 0
+
 count1_log3 db 23
 countb_log3 db 0
+
+count1_log5 db 23
+countb_log5 db 0
 
 countFL1_log db 23
 countFL2_log db 23
@@ -77,6 +91,8 @@ countFL2_log db 23
 count2_log1 db 0
 count2_log2 db 0
 count2_log3 db 0
+count2_log4 db 0
+count2_log5 db 0
 
 color_hit db 0
 
@@ -256,6 +272,36 @@ log2		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h
 ;
 
 log3		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db '$'
+;
+
+log4		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
+			db '$'
+;
+
+log5		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
@@ -1672,6 +1718,286 @@ proc hit_log3
     ret
 endp hit_log3
 
+proc Create_log4
+    mov cx, [xlog4]
+    mov dx, [ylog4]
+    mov bx, offset log4
+
+    Start_log4:
+    mov al, [bx]
+    cmp al, '$'
+    je Finish_log4
+
+    cmp al, 'n'
+    jne pass_n_log4
+    add dx, 2
+    mov cx, [xlog4]
+    inc bx
+    jmp Start_log4
+
+    pass_n_log4:
+
+    mov [count1log4], 2
+    xpixel_log4:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log4]
+    cmp [count1log4], 0
+    jne xpixel_log4
+
+    inc dx
+    mov [count1log4], 2
+    sub cx,2
+    ypixel_log4:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log4]
+    cmp [count1log4], 0
+    jne ypixel_log4
+    
+
+    inc bx
+    dec dx
+    jmp Start_log4
+
+    Finish_log4:
+    ret
+endp Create_log4
+
+proc move_log4
+    mov cx, [xlog4]
+    inc cx
+    mov dx, [ylog4]
+    mov al, 01h
+    mov [count1_log4], 24
+
+    del_line_log4:
+        cmp [count1_log4], 0
+        je draw_line1_log4_A
+        mov ah,0ch
+        int 10h
+        inc dx
+        dec [count1_log4]
+        jmp del_line_log4
+    
+    draw_line1_log4_A:
+        cmp [xlog4], 243
+        jl draw_line1_log4
+        mov cx,-311
+        add cx, [xlog4]
+        inc [countb_log4]
+        cmp [countb_log4],72
+        jne draw_line1_log4
+        mov [xlog4],2
+        mov [countb_log4],0
+
+    draw_line1_log4:
+        mov dx, [ylog4]
+        add cx, 72
+        mov al, 06h
+        mov [count1_log4], 24
+    draw_line2_log4:
+        cmp [count1_log4], 0
+        je finish_move_log4
+        mov ah,0ch
+        int 10h
+        inc dx
+        dec [count1_log4]
+        jmp draw_line2_log4
+
+    finish_move_log4:
+    inc [xlog4]
+    call hit_log4
+    ret
+endp move_log4
+
+proc hit_log4
+    mov ax, [xlog4]
+    ;sub ax, 0
+    mov bx, [xlog4]
+    add bx, 48
+    cmp ax, [xfrog]
+    jge end_hit_log4
+    cmp bx, [xfrog]
+    jle end_hit_log4
+    mov ax, [ylog4]
+    sub ax, 23
+    mov bx, [ylog4]
+    add bx, 23
+    cmp ax, [yfrog]
+    jge end_hit_log4
+    cmp bx, [yfrog]
+    jle end_hit_log4
+
+    cmp [xfrog], 291
+    mov [color_hit],06h
+    je frog_hit_log4
+    call MoveFrogRight_log
+    jmp end_hit_log4_b
+    end_hit_log4:
+    mov ax, [ylog4]
+    sub ax, 23
+    mov bx, [ylog4]
+    add bx, 23
+    cmp ax, [yfrog]
+    jge end_hit_log4_b
+    cmp bx, [yfrog]
+    jle end_hit_log4_b
+    mov al, [color_hit]
+    mov [color_hit],01h
+    frog_hit_log4:
+    call hit_frog_array_log
+    mov [xfrog], 147
+    mov [yfrog], 171
+    call Create_Frog
+
+    end_hit_log4_b:
+    ret
+endp hit_log4
+
+proc Create_log5
+    mov cx, [xlog5]
+    mov dx, [ylog5]
+    mov bx, offset log5
+
+    Start_log5:
+    mov al, [bx]
+    cmp al, '$'
+    je Finish_log5
+
+    cmp al, 'n'
+    jne pass_n_log5
+    add dx, 2
+    mov cx, [xlog5]
+    inc bx
+    jmp Start_log5
+
+    pass_n_log5:
+
+    mov [count1log5], 2
+    xpixel_log5:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log5]
+    cmp [count1log5], 0
+    jne xpixel_log5
+
+    inc dx
+    mov [count1log5], 2
+    sub cx,2
+    ypixel_log5:
+    inc cx
+    mov ah,0ch
+    int 10h
+    dec [count1log5]
+    cmp [count1log5], 0
+    jne ypixel_log5
+    
+
+    inc bx
+    dec dx
+    jmp Start_log5
+
+    Finish_log5:
+    ret
+endp Create_log5
+
+proc move_log5
+    mov cx, [xlog5]
+    inc cx
+    mov dx, [ylog5]
+    mov al, 01h
+    mov [count1_log5], 24
+
+    del_line_log5:
+        cmp [count1_log5], 0
+        je draw_line1_log5_A
+        mov ah,0ch
+        int 10h
+        inc dx
+        dec [count1_log5]
+        jmp del_line_log5
+    
+    draw_line1_log5_A:
+        cmp [xlog5], 243
+        jl draw_line1_log5
+        mov cx,-311
+        add cx, [xlog5]
+        inc [countb_log5]
+        cmp [countb_log5],72
+        jne draw_line1_log5
+        mov [xlog5],2
+        mov [countb_log5],0
+
+    draw_line1_log5:
+        mov dx, [ylog5]
+        add cx, 72
+        mov al, 06h
+        mov [count1_log5], 24
+    draw_line2_log5:
+        cmp [count1_log5], 0
+        je finish_move_log5
+        mov ah,0ch
+        int 10h
+        inc dx
+        dec [count1_log5]
+        jmp draw_line2_log5
+
+    finish_move_log5:
+    inc [xlog5]
+    call hit_log5
+    ret
+endp move_log5
+
+
+proc hit_log5
+    mov ax, [xlog5]
+    ;sub ax, 0
+    mov bx, [xlog5]
+    add bx, 48
+    cmp ax, [xfrog]
+    jge end_hit_log5
+    cmp bx, [xfrog]
+    jle end_hit_log5
+    mov ax, [ylog5]
+    sub ax, 23
+    mov bx, [ylog5]
+    add bx, 23
+    cmp ax, [yfrog]
+    jge end_hit_log5
+    cmp bx, [yfrog]
+    jle end_hit_log5
+
+    cmp [xfrog], 291
+    mov [color_hit],06h
+    je frog_hit_log5
+    call MoveFrogRight_log
+    jmp end_hit_log5_b
+    end_hit_log5:
+    mov ax, [ylog5]
+    sub ax, 23
+    mov bx, [ylog5]
+    add bx, 23
+    cmp ax, [yfrog]
+    jge end_hit_log5_b
+    cmp bx, [yfrog]
+    jle end_hit_log5_b
+    mov al, [color_hit]
+    mov [color_hit],01h
+    frog_hit_log5:
+    call hit_frog_array_log
+    mov [xfrog], 147
+    mov [yfrog], 171
+    call Create_Frog
+
+    end_hit_log5_b:
+    ret
+endp hit_log5
+
+
 proc prg
     push dx
     xor dx, dx
@@ -1688,11 +2014,32 @@ proc prg
     ret
 endp prg
 
-proc car_x
+proc car_x1
 	call prg
-	add [xcar2], ax
+	mov dx, 0
+	mov bx, 200
+	div bx
+	add [xcar2], dx
 	ret
-endp car_x
+endp car_x1
+
+proc car_x2
+	call prg
+	mov dx, 0
+	mov bx, 200
+	div bx
+	add [xcar3], dx
+	ret
+endp car_x2
+
+proc car_x3
+	call prg
+	mov dx, 0
+	mov bx, 200
+	div bx
+	add [xcar4], dx
+	ret
+endp car_x3
 
 proc check_lose
 	mov ah, 02h ; cursor position
@@ -1701,7 +2048,7 @@ proc check_lose
 	mov dl, 01h ; columns
 	int 10h
 
-	mov ax, 3
+	mov ax, 5
 	sub ax, [lose]
 	cmp ax, 0
 	jne continue_game
@@ -1717,7 +2064,8 @@ proc check_lose
 endp check_lose
 
 proc end_game
-	ret
+	enddd:
+		jmp enddd
 endp end_game
 
 start:
@@ -1727,6 +2075,14 @@ start:
     mov ax, 13h
     int 10h
 
+	call Sides
+	call Backround
+	call Create_Frog
+
+	mov [xcar2], 5
+	mov [xcar3], 5
+	mov [xcar4], 5
+	
 	mov ah, 2Ch
 	int 21h
 	mov [NextRandom],dx
@@ -1738,15 +2094,15 @@ start:
 	cmp al,00h
 	je oren_the_KING
 
-	call car_x
-
-    call Sides
-	call Backround
-	call Create_Frog
+	call car_x1
+	call car_x2
+	call car_x3
 
 	call Create_log1
 	call Create_log2
 	call Create_log3
+	;call Create_log4
+	;call Create_log5
 
 	call check_lose
 
@@ -1766,13 +2122,13 @@ start:
 	;
     Spressed:
 		cmp [yfrog],171
-		je check_if_key_pressed
+		je check_if_key_pressedjmp
         call MoveFrogDown
         jmp check_if_key_pressed
 	;
     Apressed:
 		cmp [xfrog],23
-		jle check_if_key_pressed
+		jle check_if_key_pressedjmp
         call MoveFrogLeft
         jmp check_if_key_pressed
 
@@ -1797,7 +2153,6 @@ start:
 		mov [count_car4_4],0
 		call hit_car4
 		jmp check_if_key_pressed
-	;
 	log1move:
 		call move_log1
 		mov [count2_log1],0
@@ -1813,6 +2168,21 @@ start:
 		mov [count2_log3],0
 		jmp check_if_key_pressed
 	;
+		;log4move:
+		;call move_log4
+		;mov [count2_log4],0
+		;jmp check_if_key_pressed
+	;
+		;log5move:
+		;call move_log5
+		;mov [count2_log5],0
+		;jmp check_if_key_pressed
+	;
+		p_lose:
+		mov ax, [lose]
+		mov [lose2], ax
+		call check_lose
+	;
 	Wpressed1:
 		jmp Wpressed
 	;
@@ -1825,11 +2195,6 @@ start:
 	Apressed1:
 		jmp Apressed
 	;
-		p_lose:
-		mov ax, [lose]
-		mov [lose2], ax
-		call check_lose
-
 	check_if_key_pressed:
 		cmp [count_car2_4], 100
 		je Car2move
@@ -1851,9 +2216,17 @@ start:
 		je log2move
 		inc [count2_log2]
 
+		;cmp [count2_log4], 80
+		;je log4move
+		;inc [count2_log4]
+
 		cmp [count2_log3], 85
 		je log3move
 		inc [count2_log3]
+
+		;cmp [count2_log5], 85
+		;je log5move
+		;inc [count2_log5]
 		
 		mov ax, [lose]
 		cmp ax, [lose2]
@@ -1864,19 +2237,33 @@ start:
         cmp al, 0
         jne  wait_for_key
         jmp check_if_key_pressed
-	
+
+	;
+	Wpressed2:
+		jmp Wpressed1
+	;
+	Dpressed2:
+		jmp Dpressed1
+	;
+	Spressed2:
+		jmp Spressed1
+	;
+	Apressed2:
+		jmp Apressed1
+	;
+
     wait_for_key:
 	mov ah, 00h
     int 16h
-
+	
 	cmp ah, 11h
-    je Wpressed1
+    je Wpressed2
     cmp ah, 20h
-    je Dpressed1
+    je Dpressed2
     cmp ah, 1Fh
-    je Spressed1
+    je Spressed2
     cmp ah, 1Eh
-    je Apressed1
+    je Apressed2
     jmp check_if_key_pressed
 
 	mov ah, 00h
