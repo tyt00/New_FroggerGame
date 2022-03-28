@@ -58,6 +58,9 @@ xlog5 dw 95
 ylog5 dw 75
 count1log5 db 2
 
+on_log4 db 0
+on_log5 db 0
+
 count_hit1 dw 23
 count_hit2 dw 25
 count_ret_array dw 576
@@ -100,6 +103,8 @@ NextRandom dw 10000
 
 count_start dw 0ffffh
 count_start2 dw 0ffffh
+
+score db 0
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
@@ -1618,6 +1623,8 @@ proc hit_log2
     mov al, [color_hit]
     mov [color_hit],01h
     frog_hit_log2:
+	cmp [on_log4],1
+	je end_hit_log2_b
     call hit_frog_array_log
     mov [xfrog], 147
     mov [yfrog], 171
@@ -1709,6 +1716,8 @@ proc hit_log3
     mov al, [color_hit]
     mov [color_hit],01h
     frog_hit_log3:
+	cmp [on_log5],1
+	je end_hit_log3_b
     call hit_frog_array_log
     mov [xfrog], 147
     mov [yfrog], 171
@@ -1835,6 +1844,7 @@ proc hit_log4
     mov [color_hit],06h
     je frog_hit_log4
     call MoveFrogRight_log
+	mov [on_log4],1
     jmp end_hit_log4_b
     end_hit_log4:
     mov ax, [ylog4]
@@ -1848,10 +1858,7 @@ proc hit_log4
     mov al, [color_hit]
     mov [color_hit],01h
     frog_hit_log4:
-    call hit_frog_array_log
-    mov [xfrog], 147
-    mov [yfrog], 171
-    call Create_Frog
+	mov [on_log4],0
 
     end_hit_log4_b:
     ret
@@ -1975,6 +1982,7 @@ proc hit_log5
     mov [color_hit],06h
     je frog_hit_log5
     call MoveFrogRight_log
+	mov [on_log5], 1
     jmp end_hit_log5_b
     end_hit_log5:
     mov ax, [ylog5]
@@ -1988,10 +1996,7 @@ proc hit_log5
     mov al, [color_hit]
     mov [color_hit],01h
     frog_hit_log5:
-    call hit_frog_array_log
-    mov [xfrog], 147
-    mov [yfrog], 171
-    call Create_Frog
+	mov [on_log5],0
 
     end_hit_log5_b:
     ret
@@ -2017,7 +2022,7 @@ endp prg
 proc car_x1
 	call prg
 	mov dx, 0
-	mov bx, 200
+	mov bx, 150
 	div bx
 	add [xcar2], dx
 	ret
@@ -2026,7 +2031,7 @@ endp car_x1
 proc car_x2
 	call prg
 	mov dx, 0
-	mov bx, 200
+	mov bx, 150
 	div bx
 	add [xcar3], dx
 	ret
@@ -2035,7 +2040,7 @@ endp car_x2
 proc car_x3
 	call prg
 	mov dx, 0
-	mov bx, 200
+	mov bx, 150
 	div bx
 	add [xcar4], dx
 	ret
@@ -2068,6 +2073,16 @@ proc end_game
 		jmp enddd
 endp end_game
 
+proc finish
+	cmp [yfrog], 6
+	jg end_finish
+	inc [score]
+	mov [xfrog], 147
+	mov [yfrog], 171
+	call Create_Frog
+	end_finish:
+	ret
+endp finish
 start:
 ; Graphic mode
     mov ax, @data
@@ -2101,13 +2116,14 @@ start:
 	call Create_log1
 	call Create_log2
 	call Create_log3
-	;call Create_log4
-	;call Create_log5
+	call Create_log4
+	call Create_log5
 
 	call check_lose
 
 
 	jmp check_if_key_pressed
+	;
     Wpressed:
 		cmp [yfrog],3
 		je check_if_key_pressedjmp
@@ -2168,15 +2184,15 @@ start:
 		mov [count2_log3],0
 		jmp check_if_key_pressed
 	;
-		;log4move:
-		;call move_log4
-		;mov [count2_log4],0
-		;jmp check_if_key_pressed
+		log4move:
+		call move_log4
+		mov [count2_log4],0
+		jmp check_if_key_pressed
 	;
-		;log5move:
-		;call move_log5
-		;mov [count2_log5],0
-		;jmp check_if_key_pressed
+		log5move:
+		call move_log5
+		mov [count2_log5],0
+		jmp check_if_key_pressed
 	;
 		p_lose:
 		mov ax, [lose]
@@ -2216,21 +2232,23 @@ start:
 		je log2move
 		inc [count2_log2]
 
-		;cmp [count2_log4], 80
-		;je log4move
-		;inc [count2_log4]
+		cmp [count2_log4], 80
+		je log4move
+		inc [count2_log4]
 
 		cmp [count2_log3], 85
 		je log3move
 		inc [count2_log3]
 
-		;cmp [count2_log5], 85
-		;je log5move
-		;inc [count2_log5]
+		cmp [count2_log5], 85
+		je log5move
+		inc [count2_log5]
 		
 		mov ax, [lose]
 		cmp ax, [lose2]
 		jne p_lose
+
+		call finish
 
 		mov ah, 0bh
         int 21h
