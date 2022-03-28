@@ -106,6 +106,12 @@ count_start2 dw 0ffffh
 
 score db 0
 
+count_l1 db 1
+count_l2 db 0
+count_l3 db 0
+
+
+
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
 		  	db 't', 0Ah, 't', 0Ah, 0Ah, 0Eh, 0Eh, 0Ah, 0Ah, 't', 0Ah, 't', 'n'
@@ -320,8 +326,6 @@ log5		db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h
 			db 06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,06h,'n'
 			db '$'
 ;
-
-
 
 CODESEG
 proc Sides
@@ -1537,7 +1541,10 @@ proc hit_frog_array_log
         jne return_array_log
     mov [count_ret_array_log],576
 
+	cmp [count_l3],1
+	je finish_hitfroglog
     inc [lose]
+	finish_hitfroglog:
     ret
 endp hit_frog_array_log
 
@@ -1959,7 +1966,6 @@ proc move_log5
     ret
 endp move_log5
 
-
 proc hit_log5
     mov ax, [xlog5]
     ;sub ax, 0
@@ -2001,7 +2007,6 @@ proc hit_log5
     end_hit_log5_b:
     ret
 endp hit_log5
-
 
 proc prg
     push dx
@@ -2047,6 +2052,20 @@ proc car_x3
 endp car_x3
 
 proc check_lose
+	inc [count_l2]
+	cmp [count_l2], 6
+	jne over_2
+	mov [count_l1],1
+	over_2:
+	cmp [count_l1], 1
+	je over_l
+	call MoveFrogUp
+	call MoveFrogDown
+	call MoveFrogDown
+
+	over_l:
+	mov [count_l1], 0
+
 	mov ah, 02h ; cursor position
 	mov bh, 00h ; page number
 	mov dh, 01h ; row
@@ -2077,6 +2096,10 @@ proc finish
 	cmp [yfrog], 6
 	jg end_finish
 	inc [score]
+	mov [color_hit], 08h
+	inc [count_l3]
+	call hit_frog_array_log
+	dec [count_l3]
 	mov [xfrog], 147
 	mov [yfrog], 171
 	call Create_Frog
