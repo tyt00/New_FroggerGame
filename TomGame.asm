@@ -2074,16 +2074,20 @@ proc check_lose
 
 	mov ax, 5
 	sub ax, [lose]
-	cmp ax, 0
-	jne continue_game
-	call end_game
-	continue_game:
 	mov [lose_str], ax
 	add [lose_str], 30h
 
 	mov ah, 09h ; write string to standart output
 	lea dx, [lose_str]
 	int 21h
+
+	mov ax, 5
+	sub ax, [lose]
+	cmp ax, 0
+	jne continue_game
+	call end_game
+	continue_game:
+
 	ret
 endp check_lose
 
