@@ -106,11 +106,16 @@ count_start2 dw 0ffffh
 
 score db 0
 
+dif_score db 0
+
 count_l1 db 1
 count_l2 db 0
 count_l3 db 0
 
+sss db 0
 
+message2 db 10,13,'Welcome To Froger!',10,13,'The rules are simple:',10,13,'Move with W,A,S,D',10,13,'Dodge cars',10,13,'And use logs to avoid falling',10,13,'into the river',10,13,'Try to get to the end','$'
+message1 db  10,"You lost, but don't give up",10,13,'You can try again!','$'
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
@@ -2092,6 +2097,11 @@ proc check_lose
 endp check_lose
 
 proc end_game
+	push seg message1
+    ;pop ds
+  	mov dx, offset message1
+ 	mov ah, 9h
+  	int 21h
 	enddd:
 		jmp enddd
 endp end_game
@@ -2107,6 +2117,7 @@ proc finish
 	mov [xfrog], 147
 	mov [yfrog], 171
 	call Create_Frog
+	add [dif_score], 3
 	end_finish:
 	ret
 endp finish
@@ -2120,6 +2131,12 @@ start:
 	call Sides
 	call Backround
 	call Create_Frog
+
+	push seg message2
+    ;pop ds
+  	mov dx, offset message2
+ 	mov ah, 9h
+  	int 21h
 
 	mov [xcar2], 5
 	mov [xcar3], 5
@@ -2140,6 +2157,12 @@ start:
 	call car_x2
 	call car_x3
 
+	call Sides
+	mov [count2], 24
+	mov [count3], 71
+	call Backround
+	call Create_Frog
+	
 	call Create_log1
 	call Create_log2
 	call Create_log3
@@ -2178,7 +2201,8 @@ start:
 	;
 	Car2move:
 		call move_car2
-		mov [count_car2_4],0
+		mov ah, [dif_score]
+		mov [count_car2_4],ah
 		call hit_car2
 		jmp check_if_key_pressed
 	;		
@@ -2187,38 +2211,45 @@ start:
 	;
 	Car3move:
 		call move_car3
-		mov [count_car3_4],0
+		mov ah, [dif_score]
+		mov [count_car3_4],ah
 		call hit_car3
 		jmp check_if_key_pressed
 	;
 	Car4move:
 		call move_car4
-		mov [count_car4_4],0
+		mov ah, [dif_score]
+		mov [count_car4_4],ah
 		call hit_car4
 		jmp check_if_key_pressed
 	log1move:
 		call move_log1
-		mov [count2_log1],0
+		mov ah, [dif_score]
+		mov [count2_log1],ah
 		jmp check_if_key_pressed
 	;
 	log2move:
 		call move_log2
-		mov [count2_log2],0
+		mov ah, [dif_score]
+		mov [count2_log2],ah
 		jmp check_if_key_pressed
 	;
 		log3move:
 		call move_log3
-		mov [count2_log3],0
+		mov ah, [dif_score]
+		mov [count2_log3],ah
 		jmp check_if_key_pressed
 	;
 		log4move:
 		call move_log4
-		mov [count2_log4],0
+		mov ah, [dif_score]
+		mov [count2_log4],ah
 		jmp check_if_key_pressed
 	;
 		log5move:
 		call move_log5
-		mov [count2_log5],0
+		mov ah, [dif_score]
+		mov [count2_log5],ah
 		jmp check_if_key_pressed
 	;
 		p_lose:
@@ -2238,42 +2269,69 @@ start:
 	Apressed1:
 		jmp Apressed
 	;
+	Car2move1:
+		jmp Car2move
+	;
+	Car3move1:
+		jmp Car3move
+	;
+	Car4move1:
+		jmp Car4move
+	;
+	log1move1:
+		jmp log1move
+	;
+	log2move1:
+		jmp log2move
+	;
+	log3move1:
+		jmp log3move
+	;
+	log4move1:
+		jmp log4move
+	;
+	log5move1:
+		jmp log5move
+	;
+	p_lose1:
+		jmp p_lose
+	;
 	check_if_key_pressed:
 		cmp [count_car2_4], 100
-		je Car2move
+		je Car2move1
 		inc [count_car2_4]
 
 		cmp [count_car3_4], 100
-		je Car3move
+		je Car3move1
 		inc [count_car3_4]
 
 		cmp [count_car4_4], 100
-		je Car4move
+		je Car4move1
 		inc [count_car4_4]
 
 		cmp [count2_log1], 75
-		je log1move
+		je log1move1
 		inc [count2_log1]
 
 		cmp [count2_log2], 80
-		je log2move
+		je log2move1
 		inc [count2_log2]
 
 		cmp [count2_log4], 80
-		je log4move
+		je log4move1
 		inc [count2_log4]
 
 		cmp [count2_log3], 85
-		je log3move
+		je log3move1
 		inc [count2_log3]
 
 		cmp [count2_log5], 85
-		je log5move
+		je log5move1
 		inc [count2_log5]
 		
 		mov ax, [lose]
 		cmp ax, [lose2]
-		jne p_lose
+		jne p_lose1
 
 		call finish
 
