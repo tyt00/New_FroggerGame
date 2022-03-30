@@ -2121,6 +2121,121 @@ proc finish
 	end_finish:
 	ret
 endp finish
+
+proc start_game
+	mov [count], 4
+	mov [count2], 24
+	mov [count3], 71
+	mov [count4], 2
+	mov [countFL1], 23
+	mov [countFL2], 23
+
+	mov [xfrog], 147
+	mov [yfrog], 171
+
+	mov [xcar1], 130
+	mov [ycar1], 130
+	mov [count1car1], 39
+
+	mov [xcar2], 60
+	mov [ycar2], 147
+	mov [count_car2_1], 2
+	mov [count_car2_2], 30
+	mov [count_car2_3], 24
+	mov [count_car2_4], 0
+
+	mov [xcar3], 150
+	mov [ycar3], 123
+	mov [count_car3_1], 2
+	mov [count_car3_2], 30
+	mov [count_car3_3], 20
+	mov [count_car3_4], 0
+
+	mov [xcar4], 3
+	mov [ycar4], 99
+	mov [count_car4_1], 2
+	mov [count_car4_2], 30
+	mov [count_car4_3], 20
+	mov [count_car4_4], 0
+
+	mov [xlog1], 3
+	mov [ylog1], 27
+	mov [count1log1], 2
+
+	mov [xlog2], 50
+	mov [ylog2], 51
+	mov [count1log2], 2
+
+	mov [xlog4], 190
+	mov [ylog4], 51
+	mov [count1log4], 2
+
+	mov [xlog3], 195
+	mov [ylog3], 75
+	mov [count1log3], 2
+
+	mov [xlog5], 95
+	mov [ylog5], 75
+	mov [count1log5], 2
+
+	mov [on_log4], 0
+	mov [on_log5], 0
+
+	mov [count_hit1], 23
+	mov [count_hit2], 25
+	mov [count_ret_array], 576
+
+	mov [count_hit1_log], 23
+	mov [count_hit2_log ], 25
+	mov [count_ret_array_log ], 576
+
+	mov [lose], 0
+	mov [lose2], 0
+
+	mov [count1_log1], 23
+	mov [countb_log1], 0
+
+	mov [count1_log2], 23
+	mov [countb_log2], 0
+
+	mov [count1_log4], 23
+	mov [countb_log4], 0
+
+	mov [count1_log3], 23
+	mov [countb_log3], 0
+
+	mov [count1_log5], 23
+	mov [countb_log5], 0
+
+	mov [countFL1_log], 23
+	mov [countFL2_log], 23
+
+	mov [count2_log1], 0
+	mov [count2_log2], 0
+	mov [count2_log3], 0
+	mov [count2_log4], 0
+	mov [count2_log5], 0
+
+	mov [color_hit], 0
+
+	mov [NextRandom], 10000
+
+	mov [count_start], 0ffffh
+	mov [count_start2], 0ffffh
+
+	mov [score], 0
+
+	mov [dif_score], 0
+
+	mov [count_l1], 1
+	mov [count_l2], 0
+	mov [count_l3], 0
+
+	mov [sss], 0
+
+	ret
+endp start_game
+
 start:
 ; Graphic mode
     mov ax, @data
@@ -2128,6 +2243,8 @@ start:
     mov ax, 13h
     int 10h
 
+	start_Frogger:
+	call start_game
 	call Sides
 	call Backround
 	call Create_Frog
