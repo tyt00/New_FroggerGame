@@ -2103,7 +2103,27 @@ proc end_game
  	mov ah, 9h
   	int 21h
 	enddd:
-		jmp enddd
+	mov ah,00h
+	int 16h
+	cmp al, 63h
+		je restart
+	cmp al,65h
+		je end_g
+	jmp enddd
+	end_g:
+		jmp exit2
+	restart:
+		mov al,00h
+		call start_game
+		call Sides
+		call Backround
+		call Create_Frog
+
+		mov [xcar2], 5
+		mov [xcar3], 5
+		mov [xcar4], 5
+		mov al,00h
+		jmp end_oren_the_KING
 endp end_game
 
 proc finish
@@ -2243,7 +2263,6 @@ start:
     mov ax, 13h
     int 10h
 
-	start_Frogger:
 	call start_game
 	call Sides
 	call Backround
@@ -2270,6 +2289,8 @@ start:
 	cmp al,00h
 	je oren_the_KING
 
+	end_oren_the_KING:
+
 	call car_x1
 	call car_x2
 	call car_x3
@@ -2290,6 +2311,9 @@ start:
 
 
 	jmp check_if_key_pressed
+	;
+	exit2:
+		je exit1
 	;
     Wpressed:
 		cmp [yfrog],3
@@ -2314,7 +2338,9 @@ start:
 		jle check_if_key_pressedjmp
         call MoveFrogLeft
         jmp check_if_key_pressed
-
+	;
+	exit1:
+		jmp exit
 	;
 	Car2move:
 		call move_car2
