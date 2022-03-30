@@ -118,7 +118,7 @@ count_l3 db 0
 sss db 0
 
 message2 db 10,13,'Welcome To Froger!',10,13,'The rules are simple:',10,13,'Move with W,A,S,D',10,13,'Dodge cars',10,13,'And use logs to avoid falling',10,13,'into the river',10,13,'Try to get to the end','$'
-message1 db 10,13,"You lost, but don't give up",10,13,'You can try again!',10,13,'Click c to restart',10,13,'Click e to exit',10,13,'$'
+message1 db 10,13,"You lost, but don't give up",10,13,'Try to beat your high score!',10,13,'Click c to restart',10,13,'Click e to exit',10,13,'$'
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
