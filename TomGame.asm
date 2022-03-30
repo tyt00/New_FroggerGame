@@ -105,6 +105,9 @@ count_start dw 0ffffh
 count_start2 dw 0ffffh
 
 score db 0
+score_str dw '3', '$'
+high_score db 0
+high_score_str dw '3', '$'
 
 dif_score db 0
 
@@ -115,7 +118,7 @@ count_l3 db 0
 sss db 0
 
 message2 db 10,13,'Welcome To Froger!',10,13,'The rules are simple:',10,13,'Move with W,A,S,D',10,13,'Dodge cars',10,13,'And use logs to avoid falling',10,13,'into the river',10,13,'Try to get to the end','$'
-message1 db  10,"You lost, but don't give up",10,13,'You can try again!','$'
+message1 db 10,13,"You lost, but don't give up",10,13,'You can try again!',10,13,'Click c to restart',10,13,'Click e to exit',10,13,'$'
 
 Frog  	    db 't', 0Ah, 't', 't', 0Eh, 0Ah, 0Eh, 0Eh, 't', 't', 0Ah, 't', 'n'
 		  	db 0Ah, 0Ah, 't', 0Dh, 0Ah, 0Eh, 0Eh, 0Ah, 0Dh, 't', 0Ah, 0Ah, 'n'
@@ -457,6 +460,27 @@ proc Backround
 	finishRiver:
 	ret
 endp Backround
+
+proc road
+	mov [count3],71
+	mov cx, 4
+	mov dx, 100
+	ro:
+	mov al,00h
+	mov ah,0ch
+	int 10h
+	inc cx
+	cmp cx, 316
+	jne ro
+	cmp [count3], 0
+	je finishro
+	dec [count3]
+	inc dx
+	mov cx, 4
+	jmp ro
+	finishro:
+	ret
+endp road
 
 proc Create_Frog
 	mov cx, [xfrog]
@@ -2106,7 +2130,14 @@ proc end_game
 	mov ah,00h
 	int 16h
 	cmp al, 63h
-		je restart
+		jne con
+		mov ah, [score]
+		cmp ah, [high_score]
+		jle res
+		mov [high_score], ah
+		res:
+		jmp restart
+	con:
 	cmp al,65h
 		je end_g
 	jmp enddd
@@ -2117,12 +2148,18 @@ proc end_game
 		call start_game
 		call Sides
 		call Backround
+		call road
 		call Create_Frog
 
 		mov [xcar2], 5
 		mov [xcar3], 5
 		mov [xcar4], 5
 		mov al,00h
+		call prg
+		call prg
+		call prg
+		call prg
+		call prg
 		jmp end_oren_the_KING
 endp end_game
 
@@ -2130,6 +2167,7 @@ proc finish
 	cmp [yfrog], 6
 	jg end_finish
 	inc [score]
+	call p_score
 	mov [color_hit], 08h
 	inc [count_l3]
 	call hit_frog_array_log
@@ -2256,6 +2294,44 @@ proc start_game
 	ret
 endp start_game
 
+proc p_score
+	mov ah, 02h ; cursor position
+	mov bh, 00h ; page number
+	mov dh, 01h ; row
+	mov dl, 24h ; columns
+	int 10h
+
+	mov al,00h
+	mov ah, 48
+	add ah, [score]
+	mov [score_str], ax
+	add [score_str], 30h
+
+	mov ah, 09h ; write string to standart output
+	lea dx, [score_str]
+	int 21h
+	ret
+endp p_score
+
+proc p_high_score
+	mov ah, 02h ; cursor position
+	mov bh, 00h ; page number
+	mov dh, 01h ; row
+	mov dl, 20h ; columns
+	int 10h
+
+	mov al,00h
+	mov ah, 48
+	add ah, [high_score]
+	mov [high_score_str], ax
+	add [high_score_str], 30h
+
+	mov ah, 09h ; write string to standart output
+	lea dx, [high_score_str]
+	int 21h
+	ret
+endp p_high_score
+
 start:
 ; Graphic mode
     mov ax, @data
@@ -2308,6 +2384,8 @@ start:
 	call Create_log5
 
 	call check_lose
+	call p_score
+	call p_high_score
 
 
 	jmp check_if_key_pressed
