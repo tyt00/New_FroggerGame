@@ -2175,7 +2175,7 @@ proc finish
 	mov [xfrog], 147
 	mov [yfrog], 171
 	call Create_Frog
-	add [dif_score], 3
+	add [dif_score], 5
 	end_finish:
 	ret
 endp finish
@@ -2592,6 +2592,7 @@ start:
 
 	mov ah, 00h
     int 16h
+	
     
 exit :
 mov ax, 4c00h
